@@ -9,7 +9,7 @@ const Navbar = () => {
   const {cart,wishList}=useContext(StoreContext)
   
   const styles = {
-    navbar:"navbar h-[60px] shadow-md relative z-10 text-[#8a4af3]",
+    navbar:"navbar h-[60px] shadow-md w-full z-10 text-[#8a4af3] fixed bg-white",
     navbarInner:"wrapper pl-[20px] pr-[20px] pt-[10px] pb-[10px] flex justify-between items-center",
     button: "text-[14px] cursor-pointer ml-[25px]",
     right: "right flex flex-1 items-center justify-end text-[#8a4af3]",
@@ -21,6 +21,7 @@ const Navbar = () => {
   };
 
   return (
+    <div className="mb-[63px]">
     <div className={styles.navbar}>
       <div className={styles.navbarInner}>
         {/* left div */}
@@ -57,6 +58,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

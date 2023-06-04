@@ -5,8 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const Checkout = () => {
   return (
     <div className="container mx-auto p-4">
+      <div className="flex items-center justify-center text-[#8a4af3]">
       <h1 className="text-3xl font-bold mb-4">Checkout</h1>
-
+      </div>
       <form className="bg-white shadow-md rounded-md p-4">
         <div className="grid grid-cols-2 gap-4">
           <div>

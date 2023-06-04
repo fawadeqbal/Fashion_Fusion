@@ -22,7 +22,6 @@ const Product = ({ item }) => {
       <p className="text-sm mb-2">Price: ${item.price.toFixed(2)}</p>
       <div className="flex justify-center absolute bottom-1 left-1 right-1">
         <Button
-          variant="outlined"
           color="primary"
           onClick={handleProduct}
           className="hover:outline-primary"
