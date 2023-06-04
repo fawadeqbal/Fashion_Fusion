@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const Login = () => {
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const handleSignIn = () => {
+    const username = usernameRef.current.value;
+    const password = passwordRef.current.value;
+
+    console.log(username+password)
+    // Perform login logic using username and password
+  };
+
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 ">
       <div className="w-full max-w-md">
@@ -11,6 +22,7 @@ const Login = () => {
               Username
             </label>
             <input
+              ref={usernameRef}
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
@@ -22,6 +34,7 @@ const Login = () => {
               Password
             </label>
             <input
+              ref={passwordRef}
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
@@ -30,6 +43,7 @@ const Login = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
+              onClick={handleSignIn}
               className="bg-[#8a4af3] hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
             >

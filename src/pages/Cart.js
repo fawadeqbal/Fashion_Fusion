@@ -67,11 +67,6 @@ const Cart = () => {
                   <p>
                     <b className="mr-2">Price:</b>${item.price.toFixed(2)}
                   </p>
-                  <p className="text-[20px]">
-                    <b className="mr-2 text-[#8a4af3]">Total:</b>${(
-                      item.price * item.quantity
-                    ).toFixed(2)}
-                  </p>
                 </div>
               </div>
 
@@ -87,6 +82,9 @@ const Cart = () => {
                 >
                   Remove
                 </button>
+                <p className="flex items-center justify-center text-xl mt-3">
+                  <b>{'Total: $'+`${item.quantity*item.price}`}</b>
+                </p>
               </div>
             </div>
           ))}

@@ -27,7 +27,7 @@ const AboutUs = () => {
           </div>
           <div className="lg:w-1/2 px-4">
             <div className="flex justify-center">
-              <img className="h-64 w-64 object-cover object-center rounded" src="mens1.jpg" alt="About Us" />
+              <img className="h-160 w-120 object-cover object-center rounded" src="pics/mens3.jpg" alt="About Us" />
             </div>
           </div>
         </div>
