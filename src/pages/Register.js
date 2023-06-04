@@ -1,76 +1,68 @@
-import React, { useRef } from "react";
+import React from 'react';
 
-const Register = () => {
-  // Refs
-  const confirmRef = useRef(null);
-
-  // Styles
-  const inputStyle =
-    "border-[2px] border-silver rounded-lg outline-[#8a4af3] p-2 focus:border-[#8a4af3] ease-linear duration-200 min-w-0";
-
-  const buttonStyle =
-    "mt-5 flex justify-center bg-[#8a4af3] text-white font-medium rounded-md p-2 ease-linear duration-200";
-
+const Register= () => {
   return (
-    <div className="flex justify-center w-[100%] h-[100vh] bg-[#b892f7]">
-      <div className="flex flex-col absolute top-[20%] shadow-lg border-silver border-[2px] bg-white rounded-lg p-5 mobile:w-[90%]">
-        <text className="text-2xl">REGISTER</text>
-
-        {/* First Name Last Name */}
-        <div className="flex mt-7 w-auto">
-          <input
-            className={inputStyle + " mr-3"}
-            name="first"
-            type="text"
-            placeholder="First Name"
-            required
-          />
-          <input
-            className={inputStyle}
-            name="last"
-            type="text"
-            placeholder="Last Name"
-          />
-        </div>
-
-        {/* Email */}
-        <input
-          className={inputStyle + " mt-7 mobile:w-[100%]"}
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-        />
-
-        {/* Password */}
-        <div className="flex mt-7">
-          <input
-            className={inputStyle + " mr-3"}
-            name="pass"
-            type="password"
-            placeholder="Password"
-            required
-          />
-          <input
-            className={inputStyle}
-            name="confirm"
-            type="password"
-            placeholder="Confirm Password"
-            required
-            ref={confirmRef}
-          />
-        </div>
-        <div className="flex justify-center">
-          <span className="flex-1 mr-3"></span>
-          <span className="flex-1 text-red-500"></span>
-        </div>
-
-        {/* Submit button */}
-        <input
-          type="button"
-          className={buttonStyle}
-          value="Sign up"
-        />
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-6 bg-white rounded shadow-md">
+        <h2 className="text-2xl font-semibold mb-6">Register</h2>
+        <form>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+              Username
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password">
+              Confirm Password
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm your password"
+            />
+          </div>
+          <button
+            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Register
+          </button>
+        </form>
+        <p className="mt-4 text-center text-gray-500 text-xs">
+          Already have an account?{' '}
+          <a className="text-indigo-500 hover:text-indigo-700" href="/login">
+            Login
+          </a>
+        </p>
       </div>
     </div>
   );

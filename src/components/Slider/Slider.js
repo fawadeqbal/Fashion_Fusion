@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import { ApiSlides } from "../../api/ApiSlides";
 import './Slider.css'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const nav=useNavigate();
@@ -28,7 +28,7 @@ const Slider = () => {
   }
 
   const style = {
-    parentDiv: "parentDiv h-[540px] bg-white flex justify-between items-center",
+    parentDiv: "parentDiv h-[540px] bg-white flex justify-between items-center ",
     arrow:
       "rounded-full bg-grey flex justify-center items-center shadow-sm hover:cursor-pointer",
     slideParent:

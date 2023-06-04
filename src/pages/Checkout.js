@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = () => {
   return (
@@ -66,10 +68,13 @@ const Checkout = () => {
           </div>
         </div>
 
-        <button className="mt-6 bg-[#8a4af3] text-white font-medium rounded-md p-2 hover:bg-white hover:text-[#8a4af3] hover:border-[2px] hover:shadow-md hover:border-[#8a4af3] ease-linear duration-200 cursor-pointer">
+        
+      </form>
+      <button className="mt-6 bg-[#8a4af3] text-white font-medium rounded-md p-2 hover:bg-white hover:text-[#8a4af3] hover:border-[2px] hover:shadow-md hover:border-[#8a4af3] ease-linear duration-200 cursor-pointer" onClick={()=>toast.success('Thanks for placing order.')}>
           Place Order
         </button>
-      </form>
+
+      <ToastContainer /> {/* Add this line */}
     </div>
   );
 };

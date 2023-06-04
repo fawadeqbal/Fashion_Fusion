@@ -13,7 +13,7 @@ const Cart = () => {
   };
 
   const handleContinueShopping = () => {
-    navigate("/category");
+    navigate("/catagory");
   };
 
   const productTitle = (title) => {
@@ -25,20 +25,16 @@ const Cart = () => {
   };
 
   return (
-    <div className="p-3">
-      <div className="flex justify-center text-5xl">Cart</div>
+    <div className="mt-6 p-3">
+      <div className="flex justify-center text-3xl text-[#8a4af3] "><span className="border-[1px] pl-8 pr-8 pt-1 pb-1 rounded-md border-[#8a4af3]">Cart</span></div>
 
       <div className="flex items-center justify-between mt-4 flex-wrap">
         <button
-          className="btn bg-white text-[#8a4af3] border-2 border-[#8a4af3] mt-0 hover:text-[#fff]"
+          className="btn bg-white text-[#8a4af3] border-[1px] border-[#8a4af3] mt-0 hover:text-[#fff]"
           onClick={handleContinueShopping}
         >
           Continue Shopping
         </button>
-        <div className="flex underline text-lg hover:cursor-pointer m-5">
-          <p>Items in your Cart: {cart.length}</p>
-          <p className="ml-5">Wishlist Items: 0</p>
-        </div>
         <button className="btn mt-0" onClick={handleCheckout}>
           Checkout Now
         </button>
@@ -47,7 +43,7 @@ const Cart = () => {
       <div className="flex flex-row mt-7 flex-wrap">
         <div className="flex flex-col flex-1">
           {cart.map((item) => (
-            <div className="m-4 flex w-full h-auto items-center flex-wrap" key={item.id}>
+            <div className="mb-4 mr-4 flex h-auto items-center flex-wrap border-[1.5px] ease-in duration-100  border-indigo-600 p-5 rounded-lg" key={item.id}>
               <div className="product flex pl-5 self-start">
                 <img
                   className="product_img w-[7rem]"
@@ -79,7 +75,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              <div className="flex-auto flex flex-col justify-center items-center mt-7">
+              <div className="flex-auto flex flex-col justify-end items-end mt-7">
                 <Counter
                   quantity={item.quantity}
                   incrQuan={() => incrQuan(item)}
@@ -94,28 +90,28 @@ const Cart = () => {
               </div>
             </div>
           ))}
-          <hr className="mb-7 mt-7" />
+          
         </div>
 
-        <div className="summary flex-[0.4] flex flex-col items-center w-auto h-[40vh] border-2 border-[#8a4af3] rounded-md shadow-lg p-5 text-lg mb-6">
+        <div className="summary flex-[0.4] flex flex-col items-center w-auto h-[40vh] border-[1px] border-[#8a4af3] rounded-md shadow-lg p-5 text-lg mb-6">
           <h1 className="text-2xl">SUMMARY</h1>
-          <div className="summaryItem flex justify-between mt-3 w-full">
+          <div className="summaryItem flex justify-between w-full">
             <p>SubTotal:</p>
             <p>${total.toFixed(2)}</p>
           </div>
-          <div className="summaryItem flex justify-between mt-3 w-full">
+          <div className="summaryItem flex justify-between w-full">
             <p>Shipping:</p>
             <p>$10</p>
           </div>
-          <div className="summaryItem flex justify-between mt-3 w-full">
+          <div className="summaryItem flex justify-between w-full">
             <p>Shipping Discount:</p>
             <p>-$10</p>
           </div>
-          <div className="summaryItem flex justify-between mt-3 w-full text-3xl font-bold">
+          <div className="summaryItem flex justify-between w-full text-3xl font-bold">
             <p>Total:</p>
             <p>${total.toFixed(2)}</p>
           </div>
-          <button className="btn btn-red mt-7" onClick={clearCart}>
+          <button className="btn btn-red" onClick={clearCart}>
             Clear Cart
           </button>
         </div>

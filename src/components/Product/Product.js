@@ -1,39 +1,34 @@
-import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { StoreContext } from '../../context/StoreContext'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const Product = ({ item }) => {
-  const { addToCart } = useContext(StoreContext);
-
-  const iconContainerStyle =
-    'h-[40px] w-[40px] rounded-full bg-white flex items-center justify-center m-3 cursor-pointer hover:bg-[#894af3] hover:text-white hover:scale-[1.1] ease-in duration-100 cursor-pointer';
-  const imageContainerStyle =
-    'flex items-center justify-center w-[100%] h-[100%] absolute opacity-0 hover:opacity-100 hover:bg-[rgba(0,0,0,0.2)] duration-100';
-  const imageStyle = 'w-full h-full object-cover';
-  const parentDivStyle =
-    'flex flex-1 items-center justify-center min-w-[250px] min-h-[350px] overflow-hidden rounded-md shadow-lg m-2 relative';
-
-  const handleAddToCart = () => {
-    addToCart(item);
-    alert("Item added to cart!");
+  const nav = useNavigate();
+  const handleProduct = () => {
+    nav(`/product/${item.id}`);
   };
 
   return (
-    <div className={parentDivStyle}>
-      <img src={item.image} alt="product_image" className={imageStyle} style={{ height: '200px', width: '150px' }} />
-      <div className={imageContainerStyle}>
-        <div className={iconContainerStyle} onClick={handleAddToCart}>
-          <ShoppingCartOutlined />
-        </div>
-        <div className={iconContainerStyle}>
-          <FavoriteBorderOutlined />
-        </div>
-        <Link to={`/product/${item.id}`}>
-          <div className={iconContainerStyle}>
-            <SearchOutlined />
-          </div>
-        </Link>
+    <div className="m-1 relative bg-white rounded-lg shadow p-4 min-w-[300px] min-h-[440px] w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/5 border-[1px] transition duration-100  hover:border-indigo-600 rounded-lg'">
+      <img
+        onClick={handleProduct}
+        src={item.image}
+        alt={item.title}
+        className="w-full h-40 object-contain mb-2 cursor-pointer"
+        style={{ height: "200px" }} // Set the desired height of the image
+      />
+      <h2 className="text-lg font-normal mb-2">{item.title}</h2>
+      <p className="text-sm mb-2">Category: {item.category}</p>
+      <p className="text-sm mb-2">Price: ${item.price.toFixed(2)}</p>
+      <div className="flex justify-center absolute bottom-1 left-1 right-1">
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleProduct}
+          className="hover:outline-primary"
+        >
+          View Product
+        </Button>
       </div>
     </div>
   );

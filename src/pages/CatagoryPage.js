@@ -11,8 +11,8 @@ const CatagoryPage = () => {
 
   return (
     <>
-      <div className="flex flex-col p-5">
-        <h1 className="text-[30px]">Collection's</h1>
+      <div className="flex flex-col p-5 ">
+        <h1 className="text-[30px] text-[#8a4af3]">Collection's</h1>
         <div className="flex items-center justify-between mt-3">
           <div className="flex mobile:flex-col">
             <p>Filter by</p>

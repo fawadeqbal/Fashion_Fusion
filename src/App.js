@@ -15,6 +15,9 @@ import WishlistPage from "./pages/WishListPage";
 import Collections from "./pages/Collections";
 import ContactUsPage from './pages/ContactUsPage'
 import FAQsPage from './pages/FAQsPage'
+import OurTeam from "./pages/OurTeam";
+import AboutUs from './pages/AboutUs'
+import StoreLocator from "./pages/StoreLocator";
 
 function App() {
   const {total}=useContext(StoreContext)
@@ -39,6 +42,10 @@ function App() {
         <Route path='/collection/:id' element={<Collections/>}/>
         <Route path='/contact' element={<ContactUsPage/>}/>
         <Route path='/faqs' element={<FAQsPage/>}/>
+        <Route path='/team' element={<OurTeam/>}/>
+        <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/location' element={<StoreLocator/>}/>
+
       </Routes>
       <Footer title={title} description={description} />
     </div>

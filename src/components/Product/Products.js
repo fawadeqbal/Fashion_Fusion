@@ -1,11 +1,11 @@
+
 import React, { useContext, useEffect, useState } from 'react';
-import Products1 from './Product1';
+import Product from './Product'
 import { StoreContext } from '../../context/StoreContext';
 
 const Products = ({ category }) => {
   const { products } = useContext(StoreContext);
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const filter = products.filter((product) => product.category === category);
@@ -14,37 +14,27 @@ const Products = ({ category }) => {
 
   const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  
 
   const titleStyle = {
-    fontSize: '2rem',
-    fontWeight: 'bold',
+    fontSize: '1.5rem',
     marginBottom: '1rem',
     textAlign: 'center',
-    color: isHovered ? 'blue' : 'black',
-    cursor: 'pointer',
     transition: 'color 0.3s ease-in-out',
   };
 
   return (
-    <div>
+    <div className=''>
       <h2
-        className="mt-5 text-2xl font-bold mb-4"
+        className="border-[1px] border-[#8a4af3] mt-5 text-2xl font-normal mb-4 m-4 p-5 rounded-xl text-[#8a4af3] "
         style={titleStyle}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         {capitalizedCategory}
       </h2>
-      <div className="flex flex-wrap p-5 justify-center items-center m-2" id="products">
+      <hr/>
+      <div className="flex flex-wrap p-5 justify-center items-center m-3"  id="products">
         {filteredProducts.map((item, key) => (
-          <Products1 item={item} key={key} />
+          <Product item={item} key={key} />
         ))}
       </div>
     </div>

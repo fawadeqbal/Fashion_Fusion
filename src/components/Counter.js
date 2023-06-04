@@ -3,7 +3,7 @@ import React from "react";
 function Counter({ incrQuan, decrQuan,quantity }) {
   return (
     <div>
-      <div className="counter flex items-center text-2xl justify-start">
+      <div className="counter flex items-end text-xl justify-end">
         Quantity
         <div className="ml-5 shadow-md flex">
           <div className="bg-[#8a4af3] text-white w-8 flex items-center justify-center rounded-l-lg cursor-pointer">

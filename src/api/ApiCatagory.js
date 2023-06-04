@@ -1,18 +1,18 @@
 export const ApiCategories = [
   {
     id: 1,
-    title: "Electronics",
+    title: "Women's clothing",
 
-    src: "electronics.jpg",
+    src: "pics/hat.jpg",
   },
   {
     id: 2,
-    title: `Men's Collection`,
-    src: "mens1.jpg",
+    title: `Men's clothing`,
+    src: "pics/mens3.jpg",
   },
   {
     id:3,
     title: "Jewelery",
-    src: 'Jewelery.jpg',
+    src: 'pics/Jewelery.jpg',
   },
 ];
