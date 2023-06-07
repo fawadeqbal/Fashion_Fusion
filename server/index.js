@@ -1,14 +1,15 @@
 import express from 'express';
-import User from './user'; // Assuming the user.js file is in the same directory
+import students from './routes/students.js';
+import teachers from './routes/teachers.js';
 
 const app = express();
 
-app.use(express.json());
+//http provides us with four methods
+//get, post, put, delete
 
-// Create a new user
-app.post('/user',);
+app.use('/students', students);
+app.use('/teachers', teachers);
 
-// Start the server
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+app.listen(5000 , ()=>{
+  console.log("")
 });
