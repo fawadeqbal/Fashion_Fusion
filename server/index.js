@@ -1,11 +1,15 @@
 import express from 'express';
-import students from './routes/students.js';
-import teachers from './routes/teachers.js';
+import students from './routes/students.js'
+import teachers from './routes/teachers.js'
+import { connection } from './db/connection.js';
 
 const app = express();
 
-//http provides us with four methods
-//get, post, put, delete
+connection.then(()=>{
+  console.log("Connected.")
+}).catch(()=> {
+  console.log("Disconnected.")
+})
 
 app.use('/students', students);
 app.use('/teachers', teachers);

@@ -1,4 +1,4 @@
 export const courses = (req, res) => {
-    res.send("This page is showing students courses...");
+    res.json([{greeting:"Hello World!",hi:"hi"}]);
     res.end();
   }
