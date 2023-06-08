@@ -1,6 +1,6 @@
 [
-    {
-        username:'fawad',
-        password:'9257'
-    }
-]
+  {
+    username: "fawad",
+    password: "9257",
+  },
+];

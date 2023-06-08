@@ -1,5 +1,5 @@
 import express from "express";
-import { salary, monthlyLeaves } from '../controller/teachers.js'
+import { salary, monthlyLeaves } from "../controller/teachers.js";
 
 const router = express.Router();
 
