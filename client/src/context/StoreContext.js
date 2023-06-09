@@ -1,4 +1,4 @@
-import React, { createContext, useState, useMemo,useEffect } from "react";
+import React, { createContext, useState,useEffect } from "react";
 import axios from "axios";
 
 const StoreContext = createContext();
@@ -9,12 +9,13 @@ const StoreProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
   const [wishList,setWishList]=useState([]);
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
+    axios.get('http://localhost:8000/products')
       .then(res => {
-        setProducts(res.data);
+        setProducts(res.data)
+        console.log(res.data)
       })
     
-  }, [products]);
+  }, []);
   const addToWishList = (product) => {
     const existingItemIndex = wishList.findIndex((item) => item.id === product.id);
     if (existingItemIndex >= 0) {
@@ -32,10 +33,7 @@ const StoreProvider = ({ children }) => {
   const addToCart = (product) => {
     const existingItemIndex = cart.findIndex((item) => item.id === product.id);
     if (existingItemIndex >= 0) {
-      const updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity += 1;
-      setCart(updatedCart);
-      setTotal(total + product.price);
+      
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
       setTotal(total + product.price);
@@ -53,13 +51,15 @@ const StoreProvider = ({ children }) => {
   };
 
   const decrQuan = (item) => {
-    const updatedCart = cart.map((product) =>
+   
+    
+    if (item.quantity > 1) {
+      const updatedCart = cart.map((product) =>
       product.id === item.id && product.quantity > 0
         ? { ...product, quantity: product.quantity - 1 }
         : product
     );
     setCart(updatedCart);
-    if (item.quantity > 0) {
       setTotal(total - item.price);
     }
   };

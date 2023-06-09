@@ -32,7 +32,7 @@ const Cart = () => {
     <>
       <div className="mt-6 p-3">
         <div className="flex justify-center text-3xl text-[#8a4af3] ">
-          <span className="border-[1px] pl-8 pr-8 pt-1 pb-1 rounded-md border-[#8a4af3]">
+          <span className="border-[1px] rounded-lg pl-8 pr-8 pt-1 pb-1 text-white bg-[#8a4af3]">
             Cart<ShoppingCartOutlined className="ml-4 w-full"/>
           </span>
         </div>
