@@ -3,7 +3,6 @@ export const registration =async (req, res) => {
     try {
       // Extract username, email, and password from the request body
       const { username, email, password } = req.body;
-  console.log(username)
       // Create a new user instance
       const newUser = new User({ username, email, password });
   

@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
-const dbURI =
-  "mongodb+srv://fawad:1111@clusterstore.wuakt30.mongodb.net/?retryWrites=true&w=majority";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables from .env file
+
+const dbURI = process.env.MOGNGO_URL
+
 export const connection = mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
