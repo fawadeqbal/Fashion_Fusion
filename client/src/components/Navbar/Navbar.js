@@ -17,7 +17,7 @@ const Navbar = () => {
     logoContent: "logo font-bold text-[25px] text-lg text-[#8a4af3]",
     left: "left flex flex-1 items-center",
     leftEn: "language cursor-pointer text-[16px]",
-    leftSearch: "searchInput flex border-[2px] border-solid border-lightgrey rounded-md items-center ml-[10px] p-[5px] focus-within:border-[#8a4af3] transition-all",
+    leftSearch: "searchInput flex border-[1px] border-solid border-lightgrey rounded-md items-center ml-[10px] p-[5px] focus-within:border-[#8a4af3] transition-all",
   };
 
   return (

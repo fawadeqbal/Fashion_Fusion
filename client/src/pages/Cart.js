@@ -88,7 +88,7 @@ const Cart = () => {
                       decrQuan={() => decrQuan(item)}
                     />
                     <p className="flex items-center justify-center p-7 -ml-[50px] text-xl">
-                      <span className="font-bold pl-5">Amount </span><b className="ml-12">{`$${(item.quantity * item.price).toFixed(2)}`}</b>
+                      <span className="pl-5">Total: </span><span className="ml-2">{`$${(item.quantity * item.price).toFixed(2)}`}</span>
                     </p>
                   </div>
                 </div>

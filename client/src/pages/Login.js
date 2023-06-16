@@ -60,7 +60,7 @@ const Login = () => {
           </div>
         </form>
         <p className="text-center text-gray-500 text-xs">
-          &copy; {new Date().getFullYear()} My Store. All rights reserved.
+          &copy; {new Date().getFullYear()} SpotTroop. All rights reserved.
         </p>
       </div>
     </div>

@@ -16,7 +16,6 @@ import FAQsPage from './pages/FAQsPage'
 import OurTeam from "./pages/OurTeam";
 import AboutUs from './pages/AboutUs'
 import StoreLocator from "./pages/StoreLocator";
-import Header from "./components/Header/Header";
 
 
 function App() {
@@ -25,10 +24,10 @@ function App() {
   const description = "Explore a vast collection of clothing, accessories, and footwear to express your unique style. ";
 
   return (
-    <div className="App">
+    <>
       <Announce />
       <Navbar/>
-      {/* <Header/> */}
+      
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/catagory'element={<CatagoryPage />} />
@@ -44,11 +43,10 @@ function App() {
         <Route path='/team' element={<OurTeam/>}/>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/location' element={<StoreLocator/>}/>
-        
       </Routes>
 
       <Footer title={title} description={description} />
-    </div>
+    </>
   );
 }
 

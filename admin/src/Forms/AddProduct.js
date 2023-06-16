@@ -1,87 +1,131 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Button } from "flowbite-react";
+import React, { useState, useEffect } from "react";
+import { addProduct } from "../API/product";
 
-const ProductForm = () => {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
+const AddProduct = () => {
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [product, setProduct] = useState({
+    title: "",
+    price: 0,
+    description: "",
+    category: "",
+    image: null,
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+  });
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setImage(selectedFile);
+  const handleInputChange = (e) => {
+    console.log(e.target.name);
+    setProduct({ ...product, [e.target.name]: e.target.value });
   };
+  const handleImage = (e) => {
+    setProduct({ ...product, [e.target.name]: e.target.files[0] });
+    console.log(product);
+  };
+
+  useEffect(() => {
+    console.log(product);
+  }, [product]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create form data
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("image", image);
+    formData.append("title", product.title);
+    formData.append("price", product.price);
+    formData.append("description", product.description);
+    formData.append("category", product.category);
+    formData.append("image", product.image);
+    formData.append("rating[rate]", product.rating.rate);
+    formData.append("rating[count]", product.rating.count);
 
-    try {
-      // Send POST request to the backend API
-      const response = await axios.post("/api/products", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    await addProduct(formData);
+  }
+  const handleCategory = (e) => {
+    setProduct({ ...product, category: e.target.value });
+    setSelectedCategory(e.target.value)
   };
 
   return (
-    <>
-      <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
-      <form action="#">
-          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-              <div class="sm:col-span-2">
-                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required=""/>
-              </div>
-              <div class="w-full">
-                  <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                  <input type="text" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Product brand" required=""/>
-              </div>
-              <div class="w-full">
-                  <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                  <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required=""/>
-              </div>
-              <div>
-                  <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                  <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                      <option selected="">Select category</option>
-                      <option value="TV">TV/Monitors</option>
-                      <option value="PC">PC</option>
-                      <option value="GA">Gaming/Console</option>
-                      <option value="PH">Phones</option>
-                  </select>
-              </div>
-              <div>
-                  <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item Weight (kg)</label>
-                  <input type="number" name="item-weight" id="item-weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="12" required=""/>
-              </div> 
-              <div class="sm:col-span-2">
-                  <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                  <textarea id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
-              </div>
+    <div className="max-w-screen mx-auto mt-[115px] ml-4 mr-4">
+      <h2 className="text-2l font-bold mb-4">Add a New Product</h2>
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-10">
+        <div>
+          <label className="block mb-2 font-medium text-gray-700">Title:</label>
+          <input
+            type="text"
+            name="title"
+            value={product.title}
+            onChange={handleInputChange}
+            className="border border-gray-300 rounded-md p-2 w-full"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-2 font-medium text-gray-700">Price:</label>
+          <input
+            type="number"
+            name="price"
+            value={product.price}
+            onChange={handleInputChange}
+            className="border border-gray-300 rounded-md p-2 w-full"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-2 font-medium text-gray-700">
+            Description:
+          </label>
+          <textarea
+            name="description"
+            value={product.description}
+            onChange={handleInputChange}
+            className="border border-gray-300 rounded-md p-2 w-full"
+            required
+          />
+        </div>
+        <div>
+        <label className="block mb-2 font-medium text-gray-700">
+            Category:
+          </label>
+          <select
+            className="ml-3 border-2 bg-white border-silver selection:border-gray-500 outline-none rounded-md mobile:ml-0"
+            value={selectedCategory}
+            onChange={(e)=>handleCategory(e)}
+          >
+            <option value="men's clothing">Men's Clothing</option>
+            <option value="jewelery">Jewelery</option>
+            <option value="electronics">Electronics</option>
+            <option value="women's clothing">Women's Clothing</option>
+          </select>
+        </div>
+        <div>
+          <div className="mb-4">
+            <label
+              htmlFor="image"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Image
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              onChange={handleImage}
+              className="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md text-base text-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
-          <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-              Add product
-          </button>
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md"
+        >
+          Add Product
+        </button>
       </form>
-  </div>
-</section>
-    </>
+    </div>
   );
 };
 
-export default ProductForm;
+export default AddProduct;

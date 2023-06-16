@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const ProductPage = () => {
-  const { products, addToCart, addToWishList } = useContext(StoreContext);
+  const { addToCart, addToWishList } = useContext(StoreContext);
 
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
-  useEffect(() => {
-    const item = products.find((product) => product.id === parseInt(id));
-    setProduct(item);
+  useEffect(() => async()=>{
+    const item =await axios.get('http://localhost:8000/products/'+id);
+    console.log(item.data)
+    setProduct(item.data);
   }, [id]);
 
   if (!product) {

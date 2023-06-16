@@ -16,7 +16,7 @@ const NewsLetter = () => {
             placeholder='email'
             className='border-none pl-[20px] flex-[7] outline-none'
             />
-            <button className='btn'>
+            <button className='btn z-50'>
                 <Send/>
             </button>
         </div>

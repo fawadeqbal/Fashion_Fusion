@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 const Product = ({ item }) => {
   const nav = useNavigate();
   const handleProduct = () => {
-    nav(`/product/${item.id}`);
+    nav(`/product/${item._id}`);
   };
 
   return (

@@ -1,22 +1,28 @@
 import express from "express";
-import products from "./routes/products.js";
+import product from "./routes/products.js";
 import { connection } from "./db/connection.js";
-import cors from 'cors'
-import  registration  from "./routes/registration.js";
+import cors from "cors";
+import registration from "./routes/registration.js";
+import bodyParser from "body-parser";
 
 const app = express();
-app.use(cors())
-app.use(express.json())
 
+
+
+app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use('/upload',express.static('upload'));
 connection
   .then(() => {
-    console.log("Connected.");
+    console.log("DB Connected.");
   })
   .catch((e) => {
     console.log(e);
   });
 
-app.use("/products", products);
-app.use("/register",registration)
+app.use("/products", product);
+app.use("/register", registration);
 
 app.listen(8000);

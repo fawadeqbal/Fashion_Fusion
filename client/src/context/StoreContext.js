@@ -1,39 +1,50 @@
-import React, { createContext, useState,useEffect } from "react";
-import axios from "axios";
+import React, { createContext, useState, useEffect } from "react";
+import { fetchProducts } from "../api/product";
 
 const StoreContext = createContext();
 
 const StoreProvider = ({ children }) => {
+
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
-  const [wishList,setWishList]=useState([]);
+  const [wishList, setWishList] = useState([]);
+
   useEffect(() => {
-    axios.get('http://localhost:8000/products')
-      .then(res => {
-        setProducts(res.data)
-        console.log(res.data)
-      })
-    
-  }, []);
+    const fetchData = async () => {
+      try {
+        const products = await fetchProducts();
+        setProducts(products);
+        console.log(products)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [products]);
+
   const addToWishList = (product) => {
-    const existingItemIndex = wishList.findIndex((item) => item.id === product.id);
+    const existingItemIndex = wishList.findIndex(
+      (item) => item.id === product.id
+    );
     if (existingItemIndex >= 0) {
-      console.log("Already Added")
+      console.log("Already Added");
     } else {
       setWishList([...wishList, product]);
     }
   };
+
   const removeItemWishList = (item) => {
-    const updatedWishList = wishList.filter((product) => product.id !== item.id);
+    const updatedWishList = wishList.filter(
+      (product) => product.id !== item.id
+    );
     setWishList(updatedWishList);
   };
-  
 
   const addToCart = (product) => {
     const existingItemIndex = cart.findIndex((item) => item.id === product.id);
     if (existingItemIndex >= 0) {
-      
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
       setTotal(total + product.price);
@@ -51,15 +62,13 @@ const StoreProvider = ({ children }) => {
   };
 
   const decrQuan = (item) => {
-   
-    
     if (item.quantity > 1) {
       const updatedCart = cart.map((product) =>
-      product.id === item.id && product.quantity > 0
-        ? { ...product, quantity: product.quantity - 1 }
-        : product
-    );
-    setCart(updatedCart);
+        product.id === item.id && product.quantity > 0
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      );
+      setCart(updatedCart);
       setTotal(total - item.price);
     }
   };
@@ -79,14 +88,14 @@ const StoreProvider = ({ children }) => {
     products,
     cart,
     total,
+    wishList,
     addToCart,
     incrQuan,
     decrQuan,
     removeItem,
     clearCart,
     removeItemWishList,
-    wishList,
-    addToWishList
+    addToWishList,
   };
 
   return (

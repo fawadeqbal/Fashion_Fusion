@@ -3,7 +3,7 @@ import { ApiCategories } from '../../api/ApiCatagory'
 import Catagory from './Catagory'
 import Products from '../Product/Products'
 const Catagories = () => {
-  const [catagory,setCatagory]=useState();
+  const [catagory,setCatagory]=useState(`men's clothing`);
   return (
     <div>
     <div className='flex justify-center items-center pl-9 pr-[38px] pb-7 mt-5 mb-5'>

@@ -40,7 +40,7 @@ const WishListPage = () => {
                       onClick={() => handleRemoveItem(item)}
                       className="relative cursor-pointer -mt-5 ml-[245px] hover:text-[#8a4af3]"
                     />
-                <Link to={`../product/${item.id}`}>
+                <Link to={`../product/${item._id}`}>
                 <img src={item.image} alt={item.title} className="w-full h-40 object-contain mb-4" />
                 </Link>
                 <Typography variant="subtitle1" className="font-bold text-lg">

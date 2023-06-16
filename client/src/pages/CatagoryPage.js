@@ -4,9 +4,8 @@ import NewsLetter from '../components/NewsLetter';
 
 const CatagoryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("men's clothing");
-
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.currentTarget.value);
+  setSelectedCategory(event.currentTarget.value);
   };
 
   return (
@@ -16,7 +15,6 @@ const CatagoryPage = () => {
         <div className="flex items-center justify-between mt-[11px]">
           <div className="flex mobile:flex-col">
             <p>Filter by</p>
-
             <select
               className="ml-3 border-2 bg-white border-silver selection:border-gray-500 outline-none rounded-md mobile:ml-0"
               value={selectedCategory}
